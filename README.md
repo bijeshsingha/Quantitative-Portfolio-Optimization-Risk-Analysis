@@ -1,34 +1,97 @@
-**Stocks and ETFs Chosen and Rationale**
+# Quantitative Portfolio Optimization and Risk Analysis Model
 
-"The portfolio is comprised of 20 diverse assets, including sector-leading equities, commodities, and fixed-income ETFs. The selection rationale focuses on building a resilient ""All-Weather"" portfolio that balances high-growth potential with defensive stability.
-Strategic Asset Selection
+## Overview
+This project implements a multi-asset portfolio optimization and risk assessment model to maximize risk-adjusted returns and quantify tail risk.
 
-•	Diversified Large-Cap Core: Reliance, HDFC Bank, ICICI Bank, and TCS were selected to provide stability and capture the primary growth of the Indian economy.
+The model uses statistical methods, Minimum Variance optimization, and out-of-sample validation to ensure realistic and unbiased performance.
 
-•	High-Growth Diversifiers: Adani Enterprises, Dixon Technologies, and Uno Minda target high-beta sectors like green energy, electronic manufacturing, and auto components.
+---
 
-•	Defensive Anchors: Tata Elxsi, LTI Mindtree, and Infosys provide exposure to the resilient IT services sector, which often acts as a hedge during domestic market downturns.
+## Key Features
+- Multi-asset portfolio including equities, ETFs, and currencies
+- Covariance-based risk modeling
+- Monte Carlo simulation for return distribution
+- Value at Risk (VaR) estimation
+- Train-test split for backtesting
+- Benchmark comparison with equal-weight portfolio
 
-•	Commodities & Safe Havens: Goldbees and Silverbees are included to provide a non-correlated buffer against inflation and currency devaluation.
+---
 
-•	Fixed Income: LTGILTBEES (Long-term Government Bonds) provides a low-risk yield component and acts as a primary volatility dampener for the overall portfolio."
+## Methodology
 
-**Risk Management & Value at Risk (VaR)**
+### 1. Data Architecture and Backtesting
+- Collected daily closing prices for 20 assets
+- Assets include Indian equities, ETFs, and currencies
 
-"
-To ensure the portfolios can withstand market shocks, risk was quantified strictly using a 99% confidence interval.
+Time split:
+- Training set: Oct 2022 to Nov 2024
+- Test set: Dec 2024 to Dec 2025
 
-Variance Reduction: The Minimum-Variance optimization successfully identified a portfolio mix with an extremely low daily variance (approximately 0.000054), significantly smoothing out day-to-day portfolio volatility compared to the baseline.
+This prevents data leakage and ensures realistic evaluation.
 
-Monte Carlo Simulations: By simulating future price paths, the models generated a forward-looking distribution of potential returns. The baseline daily standard deviations and worst-case 1st percentile outcomes (VaR) confirm that the optimized weightings (especially Cases 1, 2, and 3) effectively truncate extreme tail-risk losses."
+---
 
-**Out-of-Sample Performance (Test Data)**
+### 2. Statistical Modeling
+- Calculated daily returns, expected returns, and excess returns
+- Built a 20 x 20 covariance matrix to measure correlations and volatility
 
-"
-The ultimate validation of the model was running the ""locked"" training weights against the unseen Test Data (Dec 2024 onwards).
+---
 
-The out-of-sample covariance and daily return matrices indicate that the co-movements between the heavily weighted assets (like M&M, CDSL, and Dixon) remained relatively stable.
+### 3. Portfolio Optimization
+- Implemented Mean-Variance Optimization
 
-The optimized portfolios proved robust, demonstrating that the Alpha generated in the training set was driven by structural asset relationships rather than just statistical curve-fitting."
+Constructed:
+- Minimum Variance Portfolio (lowest risk)
+- Multiple portfolios for different risk levels
+- Equal Weight Portfolio (1/n) as baseline
 
+---
 
+### 4. Monte Carlo Simulation
+- Simulated thousands of return paths
+- Based on historical mean and standard deviation
+- Generated probabilistic performance outcomes
+
+---
+
+### 5. Value at Risk (VaR) - 99 percent confidence
+- Historical VaR: based on worst 1 percent returns
+- Parametric VaR: using normal distribution
+- Monte Carlo VaR: from simulated outcomes
+
+---
+
+### 6. Out-of-Sample Validation
+- Applied optimized weights to unseen test data
+- Recomputed returns and risk metrics
+
+This ensures the model is not overfitted.
+
+---
+
+## Final Output
+- Expected returns
+- Portfolio volatility
+- Risk-adjusted performance
+- Monte Carlo projections
+- VaR estimates
+
+Compared against equal-weight portfolio to measure performance improvement.
+
+---
+
+## Skills Used
+- Modern Portfolio Theory (MPT)
+- Portfolio Optimization
+- Monte Carlo Simulation
+- Value at Risk (VaR)
+- Covariance Modeling
+- Statistical Backtesting
+
+---
+
+## Use Cases
+- Portfolio construction
+- Risk management
+- Quantitative finance projects
+- Investment strategy testing
